@@ -23,8 +23,8 @@ add_action('after_setup_theme', 'fdb_setup');
 
 function fdb_assets() {
 	wp_enqueue_style('fdb-fonts', 'https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800;900&family=Saira+Condensed:wght@600;700;800;900&display=swap', array(), null);
-	wp_enqueue_style('fdb-style', get_stylesheet_uri(), array('fdb-fonts'), FDB_VER);
-	wp_enqueue_script('fdb-main', get_template_directory_uri() . '/assets/js/main.js', array(), FDB_VER, true);
+	wp_enqueue_style('fdb-style', get_stylesheet_uri(), array('fdb-fonts'), FDB_VER . '.' . filemtime(get_template_directory() . '/style.css'));
+	wp_enqueue_script('fdb-main', get_template_directory_uri() . '/assets/js/main.js', array(), FDB_VER . '.' . filemtime(get_template_directory() . '/assets/js/main.js'), true);
 	wp_localize_script('fdb-main', 'FDB', array(
 		'rest'   => esc_url_raw(rest_url('fdb/v1/view/')),
 		'postId' => is_single() ? get_the_ID() : 0,
