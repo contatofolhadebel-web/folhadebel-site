@@ -122,17 +122,13 @@ function fdb_ad($pos) {
 }
 
 function fdb_ad_placeholder($tipo) {
-	$frases = array(
-		array('Sua marca aqui', 'Fale com quem vive Belford Roxo e a Baixada.'),
-		array('Anuncie na Folha', 'Seu negócio na vitrine mais lida da cidade.'),
-		array('Espaço disponível', 'Banners, publieditoriais e posts patrocinados.'),
-	);
-	$i = 0;
-	foreach ($frases as $f) {
-		echo '<div class="ad__slide ad__ph ad__ph--' . $tipo . ($i === 0 ? ' is-on' : '') . '"><a href="' . esc_url(fdb_opt('fdb_anuncie')) . '">';
-		echo '<span class="ad__ph-k">Anuncie aqui</span><strong>' . esc_html($f[0]) . '</strong><span class="ad__ph-s">' . esc_html($f[1]) . '</span><span class="btn3d btn3d--sm">Quero anunciar</span>';
+	$nome = $tipo === 'vert' ? 'lateral' : 'largo';
+	$n    = $tipo === 'vert' ? 2 : 3;
+	$base = get_template_directory_uri() . '/assets/img/anuncie-' . $nome . '-';
+	for ($i = 1; $i <= $n; $i++) {
+		echo '<div class="ad__slide' . ($i === 1 ? ' is-on' : '') . '"><a href="' . esc_url(fdb_opt('fdb_anuncie')) . '" aria-label="Anuncie na Folha de Belford Roxo">';
+		echo '<img src="' . esc_url($base . $i . '.jpg') . '" alt="Anuncie aqui na Folha de Belford Roxo" loading="lazy" width="' . ($tipo === 'vert' ? 600 : 2400) . '" height="' . ($tipo === 'vert' ? 1200 : 600) . '">';
 		echo '</a></div>';
-		$i++;
 	}
 }
 
@@ -274,12 +270,20 @@ function fdb_social($class = 'social') {
 
 /* Bloco "Canal do Zap" + Instagram na lateral */
 function fdb_cta_canais() {
-	$zap = fdb_opt('fdb_whatsapp');
-	$ig  = fdb_opt('fdb_instagram');
-	echo '<div class="cta3d cta3d--zap"><span class="cta3d__ico">' . fdb_icon('whatsapp') . '</span><div><strong>Canal da Folha no Zap</strong><span>As notícias de Belford Roxo direto no seu WhatsApp.</span></div>';
-	echo '<a class="btn3d btn3d--zap" href="' . esc_url($zap ? $zap : $ig) . '" target="_blank" rel="noopener">Entrar no canal</a></div>';
-	echo '<div class="cta3d cta3d--ig"><span class="cta3d__ico">' . fdb_icon('instagram') . '</span><div><strong>@folhadebel</strong><span>Siga e acompanhe a Baixada em tempo real.</span></div>';
-	echo '<a class="btn3d" href="' . esc_url($ig) . '" target="_blank" rel="noopener">Seguir</a></div>';
+	$zap  = fdb_opt('fdb_whatsapp');
+	$ig   = fdb_opt('fdb_instagram');
+	$logo = esc_url(get_template_directory_uri() . '/assets/img/logo-branca.png');
+	$cards = array(
+		array('zap', $zap ? $zap : $ig, 'Canal da Folha no Zap', 'As notícias de Belford Roxo direto no seu WhatsApp.', 'Entrar no canal', 'whatsapp'),
+		array('ig', $ig, '@folhadebel', 'Siga e acompanhe a Baixada em tempo real.', 'Seguir no Instagram', 'instagram'),
+	);
+	foreach ($cards as $c) {
+		echo '<a class="cta3d cta3d--' . $c[0] . '" href="' . esc_url($c[1]) . '" target="_blank" rel="noopener">';
+		echo '<span class="cta3d__avatar"><img src="' . $logo . '" alt="" width="447" height="164"><i>' . fdb_icon($c[5]) . '</i></span>';
+		echo '<span class="cta3d__txt"><strong>' . esc_html($c[2]) . '</strong><span>' . esc_html($c[3]) . '</span></span>';
+		echo '<span class="cta3d__btn">' . esc_html($c[4]) . ' <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
+		echo '</a>';
+	}
 }
 
 function fdb_share() {
