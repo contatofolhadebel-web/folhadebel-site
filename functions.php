@@ -43,7 +43,7 @@ function fdb_customize($wp) {
 	$wp->add_section('fdb_redes', array('title' => 'Folha de Bel: redes e contato', 'priority' => 30));
 	$campos = array(
 		'fdb_instagram' => array('Instagram (URL)', 'https://www.instagram.com/folhadebel/'),
-		'fdb_whatsapp'  => array('Canal do WhatsApp (URL)', 'https://chat.whatsapp.com/BadmJLt5mMPI5Nx0fwT1Kp'),
+		'fdb_whatsapp'  => array('Canal do WhatsApp (URL)', 'https://whatsapp.com/channel/0029Vb1tVrZ2ER6j72t6B118'),
 		'fdb_facebook'  => array('Facebook (URL)', ''),
 		'fdb_tiktok'    => array('TikTok (URL)', ''),
 		'fdb_youtube'   => array('YouTube (URL)', ''),
@@ -59,7 +59,7 @@ function fdb_customize($wp) {
 add_action('customize_register', 'fdb_customize');
 
 function fdb_opt($id) {
-	$defaults = array('fdb_whatsapp' => 'https://chat.whatsapp.com/BadmJLt5mMPI5Nx0fwT1Kp', 'fdb_instagram' => 'https://www.instagram.com/folhadebel/', 'fdb_anuncie' => 'mailto:contatofolhadebel@gmail.com', 'fdb_coluna_cat' => 'politica');
+	$defaults = array('fdb_whatsapp' => 'https://whatsapp.com/channel/0029Vb1tVrZ2ER6j72t6B118', 'fdb_instagram' => 'https://www.instagram.com/folhadebel/', 'fdb_anuncie' => 'mailto:contatofolhadebel@gmail.com', 'fdb_coluna_cat' => 'politica');
 	return get_theme_mod($id, isset($defaults[$id]) ? $defaults[$id] : '');
 }
 
