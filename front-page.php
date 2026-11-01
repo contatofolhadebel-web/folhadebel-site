@@ -47,7 +47,7 @@ $coluna   = $col_cat ? get_posts(array('numberposts' => 1, 'cat' => $col_cat->te
 <div class="wrap layout">
 	<div class="layout__main">
 		<section class="sec">
-			<?php fdb_section_head('Últimas', get_permalink(get_option('page_for_posts')) ?: '', 'Agora'); ?>
+			<?php $pfp = (int) get_option('page_for_posts'); fdb_section_head('Últimas', $pfp ? get_permalink($pfp) : '', 'Agora'); ?>
 			<?php $ult = $pega(array('numberposts' => 7)); ?>
 			<div class="ult">
 				<?php foreach ($ult as $i => $post): setup_postdata($post); fdb_card($i === 0 ? 'over' : 'grid'); endforeach; wp_reset_postdata(); ?>
