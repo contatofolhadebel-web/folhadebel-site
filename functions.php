@@ -272,14 +272,14 @@ function fdb_social($class = 'social') {
 function fdb_cta_canais() {
 	$zap  = fdb_opt('fdb_whatsapp');
 	$ig   = fdb_opt('fdb_instagram');
-	$logo = esc_url(get_template_directory_uri() . '/assets/img/logo-branca.png');
+	$logo = esc_url(get_template_directory_uri() . '/assets/img/logo-f.png');
 	$cards = array(
 		array('zap', $zap ? $zap : $ig, 'Canal da Folha no Zap', 'As notícias de Belford Roxo direto no seu WhatsApp.', 'Entrar no canal', 'whatsapp'),
 		array('ig', $ig, '@folhadebel', 'Siga e acompanhe a Baixada em tempo real.', 'Seguir no Instagram', 'instagram'),
 	);
 	foreach ($cards as $c) {
 		echo '<a class="cta3d cta3d--' . $c[0] . '" href="' . esc_url($c[1]) . '" target="_blank" rel="noopener">';
-		echo '<span class="cta3d__avatar"><img src="' . $logo . '" alt="" width="447" height="164"><i>' . fdb_icon($c[5]) . '</i></span>';
+		echo '<span class="cta3d__avatar"><img src="' . $logo . '" alt=""><i>' . fdb_icon($c[5]) . '</i></span>';
 		echo '<span class="cta3d__txt"><strong>' . esc_html($c[2]) . '</strong><span>' . esc_html($c[3]) . '</span></span>';
 		echo '<span class="cta3d__btn">' . esc_html($c[4]) . ' <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
 		echo '</a>';
