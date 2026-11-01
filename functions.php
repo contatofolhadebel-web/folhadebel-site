@@ -43,7 +43,7 @@ function fdb_customize($wp) {
 	$wp->add_section('fdb_redes', array('title' => 'Folha de Bel: redes e contato', 'priority' => 30));
 	$campos = array(
 		'fdb_instagram' => array('Instagram (URL)', 'https://www.instagram.com/folhadebel/'),
-		'fdb_whatsapp'  => array('Canal do WhatsApp (URL)', ''),
+		'fdb_whatsapp'  => array('Canal do WhatsApp (URL)', 'https://chat.whatsapp.com/BadmJLt5mMPI5Nx0fwT1Kp'),
 		'fdb_facebook'  => array('Facebook (URL)', ''),
 		'fdb_tiktok'    => array('TikTok (URL)', ''),
 		'fdb_youtube'   => array('YouTube (URL)', ''),
@@ -59,7 +59,7 @@ function fdb_customize($wp) {
 add_action('customize_register', 'fdb_customize');
 
 function fdb_opt($id) {
-	$defaults = array('fdb_instagram' => 'https://www.instagram.com/folhadebel/', 'fdb_anuncie' => 'mailto:contatofolhadebel@gmail.com', 'fdb_coluna_cat' => 'politica');
+	$defaults = array('fdb_whatsapp' => 'https://chat.whatsapp.com/BadmJLt5mMPI5Nx0fwT1Kp', 'fdb_instagram' => 'https://www.instagram.com/folhadebel/', 'fdb_anuncie' => 'mailto:contatofolhadebel@gmail.com', 'fdb_coluna_cat' => 'politica');
 	return get_theme_mod($id, isset($defaults[$id]) ? $defaults[$id] : '');
 }
 
@@ -125,8 +125,8 @@ function fdb_ad_placeholder($tipo) {
 	$nome = $tipo === 'vert' ? 'lateral' : 'largo';
 	$n    = $tipo === 'vert' ? 2 : 3;
 	$base = get_template_directory_uri() . '/assets/img/anuncie-' . $nome . '-';
-	for ($i = 1; $i <= $n; $i++) {
-		echo '<div class="ad__slide' . ($i === 1 ? ' is-on' : '') . '"><a href="' . esc_url(fdb_opt('fdb_anuncie')) . '" aria-label="Anuncie na Folha de Belford Roxo">';
+	for ($i = 0; $i <= $n; $i++) {
+		echo '<div class="ad__slide' . ($i === 0 ? ' is-on' : '') . '"><a href="' . esc_url(fdb_opt('fdb_anuncie')) . '" aria-label="Anuncie na Folha de Belford Roxo">';
 		echo '<img src="' . esc_url($base . $i . '.jpg') . '" alt="Anuncie aqui na Folha de Belford Roxo" loading="lazy" width="' . ($tipo === 'vert' ? 600 : 2400) . '" height="' . ($tipo === 'vert' ? 1200 : 600) . '">';
 		echo '</a></div>';
 	}
