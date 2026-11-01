@@ -4,7 +4,7 @@
 <div class="wrap wrap--first"><?php fdb_ad('topo'); ?></div>
 
 <div class="wrap layout layout--post">
-	<article <?php post_class('post'); ?>>
+	<article <?php post_class('materia'); ?>>
 		<header class="post__head">
 			<?php fdb_tag(0, 'tag3d--lg'); ?>
 			<h1 class="post__title"><?php the_title(); ?></h1>
