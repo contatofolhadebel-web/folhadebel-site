@@ -303,3 +303,24 @@ add_filter('excerpt_length', function () { return 30; });
 
 /* Esconde a barra de admin no front para quem não é editor (visual limpo) */
 add_filter('show_admin_bar', function ($s) { return $s && current_user_can('edit_posts'); });
+
+/* Metatags Open Graph para pré-visualização de links (WhatsApp, Facebook, Instagram) */
+add_action('wp_head', 'fdb_og_meta', 5);
+function fdb_og_meta() {
+	if (!is_singular('post')) {
+		return;
+	}
+	$id = get_queried_object_id();
+	$titulo = get_the_title($id);
+	$desc = has_excerpt($id) ? get_the_excerpt($id) : wp_trim_words(wp_strip_all_tags(get_post_field('post_content', $id)), 30, '…');
+	$img = get_the_post_thumbnail_url($id, 'large');
+	echo '<meta property="og:type" content="article">' . "\n";
+	echo '<meta property="og:site_name" content="Folha de Belford Roxo">' . "\n";
+	echo '<meta property="og:title" content="' . esc_attr($titulo) . '">' . "\n";
+	echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . "\n";
+	echo '<meta property="og:url" content="' . esc_url(get_permalink($id)) . '">' . "\n";
+	if ($img) {
+		echo '<meta property="og:image" content="' . esc_url($img) . '">' . "\n";
+		echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+	}
+}
