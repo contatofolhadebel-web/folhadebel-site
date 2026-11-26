@@ -10,7 +10,7 @@
 ## Título aprovado (mantido)
 `"SÓ TEM EM BELFORD ROXO":/*CLIENTE VIRALIZA COM O/"CHINA" DA PASTELARIA`
 
-## Corpo (em revisão)
+## Corpo (aprovado, ver corpo.txt)
 Ajustes pedidos: tirar "na Baixada Fluminense" e seguir o ângulo da piada (espera um chinês, mas quem atende é um cria de Belford Roxo).
 
 ## Arquivos
